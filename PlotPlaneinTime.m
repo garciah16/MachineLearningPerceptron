@@ -5,15 +5,16 @@ load('trainingSet.mat')
 load('cx.mat')
 load('hx.mat')
 %load('firstweights.mat')
-weights = 2*rand(1, 4)-1;
+firstWeights = 2*rand(1, 4)-1;
+weights = firstWeights;
 
-N = 0.01;
+N = 0.005;
 numEpoch = 5000;
 errorConverge = zeros(numEpoch, 1);
 ep = 1:numEpoch;
 
 % plot examples on a scatter plot
-scatter3(trainingSet(2:end, 2),trainingSet(2:end, 3), trainingSet(2:end, 4))
+scatter3(trainingSet(2:end, 2),trainingSet(2:end, 3), trainingSet(2:end, 4), 'MarkerFaceColor', [0.5 0.5 0.9], 'MarkerEdgeColor', 'k')
 hold on
 % plot negative example with different marker
 scatter3(trainingSet(1, 2), trainingSet(1, 3), trainingSet(1, 4), '*')
@@ -23,7 +24,11 @@ upLim = 1.5;
 xlim([lowLim,upLim])
 ylim([lowLim,upLim])
 zlim([lowLim upLim])
-view(-45,10)
+xlabel('x1')
+ylabel('x2')
+zlabel('x3')
+title('Linear Classifier plane convergence')
+view(-10,35)
 
 for epoch = 1:numEpoch;
     errorCounter = 0;
@@ -50,8 +55,8 @@ for epoch = 1:numEpoch;
     end
     % z = -1/(w3)*(w1*x + w2*y + w0)
     z = (-1)/(weights(4))*(weights(2)*x + weights(3)*y + weights(1));
-    h1 = surf(x, y, z, 'FaceAlpha', 0.3, 'LineStyle', 'none', 'EdgeAlpha', 0.2);
-    pause(0.03)
+    h1 = surf(x, y, z, 'FaceAlpha', 0.5, 'LineStyle', '--', 'EdgeAlpha', 0.2);
+    pause(0.05)
 
     % check the error and break if there is none
     totErr = errorCounter/100;
@@ -64,3 +69,4 @@ for epoch = 1:numEpoch;
         delete(h1)
     end
 end
+title(['Linear classifier plane converged in ', num2str(epoch),' epochs'])

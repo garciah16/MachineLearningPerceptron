@@ -1,14 +1,14 @@
 clear
 close all
-for nLoop = 1:60
+for nLoop = 1:75
     
     movieMode = 1;
-    Nvect = linspace(0.1, 1, 60);
+    Nvect = linspace(0.1, 1, 75);
     N = Nvect(nLoop);
     run('weightChange1.m')
     xlimit = epoch+5;
     run('weightChange2.m')
-    if (epoch >= 3*xlimit && epoch < 300)
+    if (epoch < 500)
         xlimit = epoch;
     end
     run('weightChange3.m')
@@ -20,7 +20,7 @@ for nLoop = 1:60
     ylabel('error rate')
     title(['Error rate vs. epoch (\eta = ', num2str(N), ')'])
     xlim([1, xlimit])
-    ylim([-0.01 max(errorConverge)+0.01])
+    ylim([0 max(errorConverge)+0.01])
     
-    pause (0.1)
+    pause (0.075)
 end
