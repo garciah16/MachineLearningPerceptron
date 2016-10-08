@@ -1,0 +1,14 @@
+clear
+close all
+
+N = 
+run('weightChange1.m')
+xlimit = epoch+5;
+run('weightChange2.m')
+run('weightChange3.m')
+plot(ep, errorConverge, ep, errorConverge2, '--', ep, errorConverge3, '-.')
+legend('weight change 1', 'weight change 2', 'weight change 3')
+xlabel('number of epochs')
+ylabel('error rate')
+title('Error rate vs. epoch (\eta = ', N, '0.2)')
+xlim([0, xlimit])

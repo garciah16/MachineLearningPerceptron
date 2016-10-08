@@ -2,7 +2,6 @@ clear all
 load('trainingSet.mat')
 load('cx.mat')
 
-firstWeights = 2*rand(1,4)-1;
 numEpoch = 500;
 N = logspace(-1, 0, numEpoch);
 epochConv1 = zeros(1, numEpoch);
@@ -13,8 +12,7 @@ epochConv3 = zeros(1, numEpoch);
 for nLoop = 1:length(N)
     % we must reload the h(x) and weights for each runthrough
     load('hx.mat')
-    %load('firstweights.mat')
-    weights = firstWeights;
+    load('firstweights.mat')
     
     errorConverge = zeros(numEpoch, 1);
 
@@ -52,8 +50,7 @@ end
 for nLoop = 1:length(N)
     % we must reload the h(x) and weights for each runthrough
     load('hx.mat')
-    %load('firstweights.mat')
-    weights = firstWeights;
+    load('firstweights.mat')
     
     errorConverge = zeros(numEpoch, 1);
 
@@ -88,7 +85,6 @@ for nLoop = 1:length(N)
     end
 end  
 
-%{
 % run third weight change method
 for nLoop = 1:length(N)
     % we must reload the h(x) and weights for each runthrough
@@ -129,11 +125,10 @@ for nLoop = 1:length(N)
         end
     end
 end 
-%}
 
-semilogx(N,epochConv1, N, epochConv2, '--')
-legend('weight method 1', 'weight method 2')                        
+semilogx(N,epochConv1, N, epochConv2, '--', N, epochConv3,'-.')
+legend('weight method 1', 'weight method 2', 'weight change 3')                        
 ylabel('Epoch of convergence to zero error')
 xlabel('\eta value (log scale)')
 title('Weight Change Methods Comparison')
-ylim([1 max(epochConv2)])
+ylabel('

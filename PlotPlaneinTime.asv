@@ -17,12 +17,9 @@ scatter3(trainingSet(2:end, 2),trainingSet(2:end, 3), trainingSet(2:end, 4))
 hold on
 % plot negative example with different marker
 scatter3(trainingSet(1, 2), trainingSet(1, 3), trainingSet(1, 4), '*')
-lowLim = -0.5;
-upLim = 1.5;
-[x, y] = meshgrid(lowLim:0.1:upLim);
-xlim([lowLim,upLim])
-ylim([lowLim,upLim])
-zlim([lowLim upLim])
+[x, y] = meshgrid(0:0.1:1);
+xlim
+zlim([-0.5 1.1])
 view(-45,10)
 
 for epoch = 1:numEpoch;
