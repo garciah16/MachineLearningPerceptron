@@ -2,13 +2,16 @@ clear
 close all
 for nLoop = 1:75
     
+    if(nLoop == 58)
+        db = 1;
+    end
     movieMode = 1;
     Nvect = linspace(0.1, 1, 75);
     N = Nvect(nLoop);
     run('weightChange1.m')
     xlimit = epoch+5;
     run('weightChange2.m')
-    if (epoch < 500)
+    if (epoch > xlimit && epoch < 500)
         xlimit = epoch;
     end
     run('weightChange3.m')
@@ -22,5 +25,5 @@ for nLoop = 1:75
     xlim([1, xlimit])
     ylim([0 max(errorConverge)+0.01])
     
-    pause (0.075)
+    pause (0.75)
 end

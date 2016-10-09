@@ -137,3 +137,7 @@ ylabel('Epoch of convergence to zero error')
 xlabel('\eta value (log scale)')
 title('Weight Change Methods Comparison')
 ylim([1 max(epochConv2)])
+str1 = ['The first weights were: w0 = ', num2str(firstWeights(1)), ' w1 = ', num2str(firstWeights(2)), ' w2 = ', num2str(firstWeights(3)), ' w3 = ', num2str(firstWeights(4))];
+disp(str1)
+str2 = ['The final weights were: w0 = ', num2str(weights(1)), ' w1 = ', num2str(weights(2)), ' w2 = ', num2str(weights(3)), ' w3 = ', num2str(weights(4))];
+disp(str2)
