@@ -1,8 +1,11 @@
 clear
 close all
+
+filename = 'ErrorRateChange.gif';
+
 for nLoop = 1:75
     
-    if(nLoop == 58)
+    if(nLoop == 30)
         db = 1;
     end
     movieMode = 1;
@@ -25,5 +28,17 @@ for nLoop = 1:75
     xlim([1, xlimit])
     ylim([0 max(errorConverge)+0.01])
     
-    pause (0.75)
+    pause (0.0075)
+    
+    if(0)
+        drawnow;
+        frame = getframe(gcf);
+        im = frame2im(frame);
+        [imind,cm] = rgb2ind(im,256);
+        if nLoop == 1
+            imwrite(imind,cm,filename,'gif','Loopcount',inf);
+        else
+            imwrite(imind,cm,filename,'gif','WriteMode','append');
+        end
+    end
 end
